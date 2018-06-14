@@ -6,15 +6,16 @@
 //  Copyright © 2018 Ketaki Damale. All rights reserved.
 //
 
-import UIKit
+let manager = PushManager.shared
 
+import UIKit
 @UIApplicationMain
 class AppDelegate:  UIResponder,UIApplicationDelegate{
     var window: UIWindow?
      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
      {
         //Push Notiification Initializer
-        PushManager.shared.set(_PushFor: application) { (isGranted, token, error) in
+        manager.set(_PushFor: application) { (isGranted, token, error) in
             guard error == nil else
             {
                 //Error registering Device

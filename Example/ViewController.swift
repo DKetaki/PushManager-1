@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let manager = PushManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
        self.getNotification()
@@ -24,8 +23,22 @@ class ViewController: UIViewController {
         if manager.isGranted{
             manager.getNotification { (data) in
                 print(data)
+                DispatchQueue.main.async {
+                      guard let aps = data["aps"] as? [String: AnyHashable] else {
+                        return
+                    }
+                    guard let alert = aps["alert"] as? String else {
+                        return
+                    }
+                    self.showAlert(alert)
+                }
             }
         }
+    }
+    func showAlert (_ message:String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

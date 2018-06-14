@@ -32,6 +32,7 @@ class PushManager:NSObject
     {
         if #available(iOS 10, *)
         {
+            
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
             { (granted, error) in
                 guard error == nil else
