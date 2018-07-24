@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        self.getNotification()
@@ -20,18 +21,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     func getNotification() {
-        if manager.isGranted{
-            manager.getNotification { (data) in
-                print(data)
-                DispatchQueue.main.async {
-                      guard let aps = data["aps"] as? [String: AnyHashable] else {
-                        return
-                    }
-                    guard let alert = aps["alert"] as? String else {
-                        return
-                    }
-                    self.showAlert(alert)
+        manager.getNotification { (data) in
+            print(data)
+            DispatchQueue.main.async {
+                    guard let aps = data["aps"] as? [String: AnyHashable] else {
+                    return
                 }
+                guard let alert = aps["alert"] as? String else {
+                        return
+                }
+                self.showAlert(alert)
             }
         }
     }

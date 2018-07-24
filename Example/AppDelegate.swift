@@ -14,6 +14,7 @@ class AppDelegate:  UIResponder,UIApplicationDelegate{
     var window: UIWindow?
      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
      {
+        
         //Push Notiification Initializer
         manager.set(_PushFor: application) { (isGranted, token, error) in
             guard error == nil else
