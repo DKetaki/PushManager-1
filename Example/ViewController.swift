@@ -14,12 +14,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        self.getNotification()
+      self.schedule()
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  func schedule() {
+    manager.schedule(_event: "demo", interval: 60.0, isRepeat: true)
+  }
     func getNotification() {
         manager.getNotification { (data) in
             print(data)
